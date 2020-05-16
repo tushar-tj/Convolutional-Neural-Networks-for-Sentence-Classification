@@ -15,9 +15,20 @@ of word vectors. Each set of vectors is treated
 as a ‘channel’ and each filter is applied
 
 ## Summary Statistics of Dataset
-![Dataset Statistics](https://github.com/tushar-tj/CNN-SentenceClassification/tree/master/results/Dataset Statistics.png)
 
-![Dataset Statistics Original Paper](/results/Dataset Statistics Original.png)
+* Dataset Statistics
+
+|   Dataset Name | No. of Classes | Average Length of Sentences |    Max Length of Sentence  |   Dataset Size   |  Number of Word | Number of Words in Word2Vec	| Test Data Size |
+|--------|---|----|-------|-------|-------|-------|------|
+|   MR   | 2 | 20 |  56   | 10662 | 18765 | 16448 |  CV  |
+|  SST1  | 5 | 18 |  53   | 11855 | 17836 | 16262 | 2210 |
+|  SST2  | 2 | 18 |  53   | 9613  | 16185 | 14838 | 1821 |
+|  Subj  | 2 | 23 |  120  | 10000 | 21323 | 17913 |  CV  |
+|  TREC  | 6 | 11 |  38   | 5952  | 9592  | 9125  | 500  |
+|   CR   | 2 | 16 |  105  | 3775  | 5340  | 5046  |  CV  |
+|  MPQA  | 2 |  3 |  36   | 10606 | 6246  | 6083  |  CV  |
+
+* Dataset Statistics Original Paper
 
 |   Data | c | l  |    N  |   V   |  Vpre | Test |
 |--------|---|----|-------|-------|-------|------|
