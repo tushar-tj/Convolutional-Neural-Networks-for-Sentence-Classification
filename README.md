@@ -15,14 +15,14 @@ of word vectors. Each set of vectors is treated
 as a ‘channel’ and each filter is applied
 
 ## Summary Statistics of Dataset
-![Dataset Statistics]()
+![Dataset Statistics]('/results/Dataset Statistics.png')
 
-![Dataset Statistics Original Paper]()
+![Dataset Statistics Original Paper]('/results/Dataset Statistics Original.png')
 
 ## Training Results
-![Training Results]()
+![Training Results]('/results/Results.png')
 
-![Training Results Original Paper]()
+![Training Results Original Paper]('/results/Results Original.png')
 
 
 ## Getting Started
@@ -63,35 +63,37 @@ sklearn==0.22.2
 ## Parameters
 
 ```bash
-./train.py --help
+python train.py --help
 ```
 
 ```
 optional arguments:
   -h, --help            show this help message and exit
-  --embedding_dim EMBEDDING_DIM
-                        Dimensionality of character embedding (default: 128)
-  --filter_sizes FILTER_SIZES
-                        Comma-separated filter sizes (default: '3,4,5')
-  --num_filters NUM_FILTERS
-                        Number of filters per filter size (default: 128)
-  --l2_reg_lambda L2_REG_LAMBDA
-                        L2 regularizaion lambda (default: 0.0)
-  --dropout_keep_prob DROPOUT_KEEP_PROB
-                        Dropout keep probability (default: 0.5)
-  --batch_size BATCH_SIZE
-                        Batch Size (default: 64)
-  --num_epochs NUM_EPOCHS
-                        Number of training epochs (default: 100)
-  --evaluate_every EVALUATE_EVERY
-                        Evaluate model on dev set after this many steps
-                        (default: 100)
-  --checkpoint_every CHECKPOINT_EVERY
-                        Save model after this many steps (default: 100)
-  --allow_soft_placement ALLOW_SOFT_PLACEMENT
-                        Allow device soft device placement
-  --noallow_soft_placement
-  --log_device_placement LOG_DEVICE_PLACEMENT
-                        Log placement of ops on devices
-  --nolog_device_placement
+  -dataset DATASET      Name of the Dataset to use
+  -dataset_path DATASET_PATH
+                        Location to the Dataset
+  -epochs EPOCHS        Number of Epochs to train
+  -epochs_log EPOCHS_LOG
+                        Log Accuracy after every X Epochs
+  -optimizer OPTIMIZER  Select optimizer from "Adam" or "Adadelta"
+  -lr LR                Learning rate to use while training
+  -use_pretrained_vector USE_PRETRAINED_VECTOR
+                        To use Pretrained vector (word2vec) or not
+  -embedding_size EMBEDDING_SIZE
+                        Embedding size to be used in case of self trained
+                        embedding only, redundant is using pretrained vector
+  -keep_embedding_static KEEP_EMBEDDING_STATIC
+                        Would like to train/adjust the Embedding or not
+  -model_name MODEL_NAME
+                        Provide a name to the model, use the names in the
+                        paper for logging
+  -save_model SAVE_MODEL
+                        Would like to store the model or not, model is stored
+                        by dataset name and model name arguments provided
+  -batch_size BATCH_SIZE
+                        Batch Size to use while training
+  -use_multi_channel USE_MULTI_CHANNEL
+                        Use multichannel or not
+  -log_results LOG_RESULTS
+                        Would like to log the final results of the model
 ```
