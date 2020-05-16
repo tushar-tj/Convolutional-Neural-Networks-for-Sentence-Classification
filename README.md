@@ -20,13 +20,13 @@ as a ‘channel’ and each filter is applied
 
 |   Dataset Name | No. of Classes | Average Length of Sentences |    Max Length of Sentence  |   Dataset Size   |  Number of Word | Number of Words in Word2Vec	| Test Data Size |
 |--------|---|----|-------|-------|-------|-------|------|
-|   MR   | 2 | 20 |  56   | 10662 | 18765 | 16448 |  CV  |
-|  SST1  | 5 | 18 |  53   | 11855 | 17836 | 16262 | 2210 |
-|  SST2  | 2 | 18 |  53   | 9613  | 16185 | 14838 | 1821 |
-|  Subj  | 2 | 23 |  120  | 10000 | 21323 | 17913 |  CV  |
-|  TREC  | 6 | 11 |  38   | 5952  | 9592  | 9125  | 500  |
-|   CR   | 2 | 16 |  105  | 3775  | 5340  | 5046  |  CV  |
-|  MPQA  | 2 |  3 |  36   | 10606 | 6246  | 6083  |  CV  |
+|   MR   | 2 | 20 |  56   | 10664 | 18779 | 16417 |  CV  |
+|  SST1  | 5 | 18 |  53   | 11286 | 17200 | 15748 | 2125 |
+|  SST2  | 2 | 18 |  53   | 9142  | 15603 | 14338 | 1749 |
+|  Subj  | 2 | 23 |  120  | 10000 | 21335 | 17987 |  CV  |
+|  TREC  | 6 | 11 |  38   | 5952  | 8708  | 7475  | 500  |
+|   CR   | 2 | 16 |  105  | 4260  | 5226  | 4755  |  CV  |
+|  MPQA  | 2 |  3 |  36   | 10606 | 6247  | 6084  |  CV  |
 
 * Dataset Statistics Original Paper
 
@@ -41,10 +41,23 @@ as a ‘channel’ and each filter is applied
 |  MPQA  | 2 |  3 | 10606 | 6246  | 6083  |  CV  |
 
 ## Training Results
-![Training Results](/results/Results.png)
 
-![Training Results Original Paper](/results/Results Original.png)
+* Training Results
+|    **Model**    |  MR  |  SST-1  |  SST-2  |  Subj  |  TREC  |  CR  |  MPQA  |
+|-----------------|------|---------|---------|--------|--------|------|--------|
+| CNN-rand        |  |     |     |    |    |  |    |
+| CNN-static      |  |     |     |    |    |  |    |
+| CNN-non-static  |  |     |     |    |    |  |    |
+| CNN-multichannel|  |     |     |    |    |  |    |
 
+* Training Results Original Paper
+
+|    **Model**    |  MR  |  SST-1  |  SST-2  |  Subj  |  TREC  |  CR  |  MPQA  |
+|-----------------|------|---------|---------|--------|--------|------|--------|
+| CNN-rand        | 76.1 |  45.0   |  82.7   |  89.6  |  91.2. | 79.8 |  83.4  |
+| CNN-static      | 81.0 |  45.5   |  86.8   |  93.0  |  92.8  | 84.7 |  89.6  |
+| CNN-non-static  | 81.5 |  48.0   |  87.2   |  93.4  |  93.6  | 84.3 |  89.5  |
+| CNN-multichannel| 81.1 |  47.4   |  88.1   |  93.2  |  92.2  | 85.0 |  89.4  |
 
 ## Getting Started
 
