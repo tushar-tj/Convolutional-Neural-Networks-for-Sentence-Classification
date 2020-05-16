@@ -19,6 +19,16 @@ as a ‘channel’ and each filter is applied
 
 ![Dataset Statistics Original Paper](/results/Dataset Statistics Original.png)
 
+|   Data | c | l  |    N  |   V   |  Vpre | Test |
+|--------|---|----|-------|-------|-------|------|
+|   MR   | 2 | 20 | 10662 | 18765 | 16448 |  CV  |
+|  SST1  | 5 | 18 | 11855 | 17836 | 16262 | 2210 |
+|  SST2  | 2 | 19 | 9613  | 16185 | 14838 | 1821 |
+|  Subj  | 2 | 23 | 10000 | 21323 | 17913 |  CV  |
+|  TREC  | 6 | 10 | 5952  | 9592  | 9125  | 500  |
+|   CR   | 2 | 19 | 3775  | 5340  | 5046  |  CV  |
+|  MPQA  | 2 |  3 | 10606 | 6246  | 6083  |  CV  |
+
 ## Training Results
 ![Training Results](/results/Results.png)
 
