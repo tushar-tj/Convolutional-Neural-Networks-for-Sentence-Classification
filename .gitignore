@@ -1,3 +1,4 @@
 *.pyc
-*.csv
-.idea
+*.idea
+*.preprocessor
+*.torch

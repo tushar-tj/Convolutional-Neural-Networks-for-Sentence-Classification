@@ -43,12 +43,13 @@ as a ‘channel’ and each filter is applied
 ## Training Results
 
 * Training Results
+
 |    **Model**    |  MR  |  SST-1  |  SST-2  |  Subj  |  TREC  |  CR  |  MPQA  |
 |-----------------|------|---------|---------|--------|--------|------|--------|
-| CNN-rand        |  |     |     |    |    |  |    |
-| CNN-static      |  |     |     |    |    |  |    |
-| CNN-non-static  |  |     |     |    |    |  |    |
-| CNN-multichannel|  |     |     |    |    |  |    |
+| CNN-rand        |      |         |         |        |        |      |        |
+| CNN-static      |      |         |         |        |        |      |        |
+| CNN-non-static  |      |         |         |        |        |      |        |
+| CNN-multichannel|      |         |         |        |        |      |        |
 
 * Training Results Original Paper
 
@@ -59,38 +60,54 @@ as a ‘channel’ and each filter is applied
 | CNN-non-static  | 81.5 |  48.0   |  87.2   |  93.4  |  93.6  | 84.3 |  89.5  |
 | CNN-multichannel| 81.1 |  47.4   |  88.1   |  93.2  |  92.2  | 85.0 |  89.4  |
 
+The Results are without hyperparameter tuning models, tuning could be applied to achieve results much closer to original paper.
+
+Please refer to results folder to see results achived with hyperparameter variations.
+
 ## Getting Started
 
 ### Training
 
-* Training **CNN-rand** model on MR dataset
+* Training **CNN-rand** model on MR dataset without/with logging results(example)
 ```
-python train.py -dataset=MR -dataset_path=../../../../data/MR-rt-polaritydata/rt-polaritydata/
+python train.py -dataset=MR -dataset_path=<path to dataset>
 ```
 
 * Training **CNN-static** model on MR dataset
 ```
-python train.py -dataset=MR -dataset_path=<path to dataset> -keep_embedding_static=True -use_pretrained_vector=True -use_multi_channel=False
+python train.py -dataset=MR -dataset_path=<path to dataset> -word2vec_path=<path to word2vec> -keep_embedding_static=True -use_pretrained_vector=True
 ```
 
 * Training **CNN-non-static** model on MR dataset
 ```
-python train.py -dataset=MR -dataset_path=<path to dataset> -keep_embedding_static=False -use_pretrained_vector=True -use_multi_channel=False
+python train.py -dataset=MR -dataset_path=<path to dataset> -word2vec_path=<path to word2vec> -use_pretrained_vector=True
 ```
 
 * Training **CNN-multichannel** model on MR dataset
 ```
-python train.py -dataset=MR -dataset_path=<path to dataset> -keep_embedding_static=False -use_pretrained_vector=True -use_multi_channel=True
+python train.py -dataset=MR -dataset_path=<path to dataset> -word2vec_path=<path to word2vec> -use_pretrained_vector=True -use_multi_channel=True
 ```
 
-To log the results use argument **log_results**. Model results are stored in folder results.
+> To log the results use argument **log_results**. Model results are stored in folder results.
+>```
+>python train.py -dataset=MR -dataset_path=<path to dataset>  -log_results=True -model_name='CNN-rand'
+>```
 
-To save the model use argument **save_model** along with **model_name**. Trained model is stored in models folder.
+> To save the model use argument **save_model** along with **model_name**. Trained model is stored in models folder.
+>```
+>python train.py -dataset=MR -dataset_path=<path to dataset>  -log_results=True -model_name='CNN-rand' -save_model
+>```
 
 *Note: Please check parameters section for complete details.*
+*Also, saving the model would slow down the training process.*
 
 ### Prediction
+To predict the class of a sentence
 
+```
+python predict -model_path=<path to torch model> -preprocessor_path=<path to preprocessing class> -sentence=<sentence to predict>
+python predict -model_path=/models/ -preprocessor_path=models/CNN-multichannel.preprocessor -sentence=The product was not as expected
+```
 
 ## Prerequisites
 

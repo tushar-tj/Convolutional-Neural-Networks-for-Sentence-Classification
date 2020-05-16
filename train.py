@@ -16,6 +16,16 @@ import pickle
 np.random.seed(15)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
+def str2bool(v):
+    if isinstance(v, bool):
+       return v
+    if v.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif v.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
 def evaluate(x, y, model, criterion):
     model.eval() # setting model to eval mode
     y_pred = model(x)
@@ -83,28 +93,48 @@ def train(x_train, y_train, x_test, y_test, model, optimizer, criterion, model_n
     return train_loss, train_accuracy, test_loss, test_accuracy
 
 parser = argparse.ArgumentParser(description='CNN Based Text classifier CNN - Training')
-parser.add_argument('-dataset', type=str, default='MR', help='Name of the Dataset to use')
-parser.add_argument('-dataset_path', type=str, default=None, help='Location to the Dataset')
-parser.add_argument('-word2vec_path', type=str, default=None, help='Location to GoogleNews-vectors-negative300.bin file')
-parser.add_argument('-epochs', type=int, default=25, help='Number of Epochs to train')
-parser.add_argument('-epochs_log', type=int, default=5, help='Log Accuracy after every X Epochs')
-parser.add_argument('-optimizer', type=str, default='Adam', help='Select optimizer from "Adam" or "Adadelta"')
-parser.add_argument('-lr', type=float, default=0.001, help='Learning rate to use while training')
-parser.add_argument('-use_pretrained_vector', type=bool, default=False, help='To use Pretrained vector '
-                                                                             '(word2vec) or not')
-parser.add_argument('-embedding_size', type=int, default=300, help='Embedding size to be used in case of self trained '
-                                                                   'embedding only, redundant is using pretrained '
-                                                                   'vector')
-parser.add_argument('-keep_embedding_static', type=bool, default=False, help='Would like to train/adjust '
-                                                                             'the Embedding or not')
-parser.add_argument('-model_name', type=str, default='model', help='Provide a name to the model, use the '
-                                                                   'names in the paper for logging')
-parser.add_argument('-save_model', type=bool, default=False, help='Would like to store the model or not, model is '
-                                                                 'stored by dataset name and model '
-                                                                 'name arguments provided')
-parser.add_argument('-batch_size', type=int, default=50, help='Batch Size to use while training')
-parser.add_argument('-use_multi_channel', type=bool, default=False, help='Use multichannel or not')
-parser.add_argument('-log_results', type=bool, default=False, help='Would like to log the final results of the model')
+# Data Locations
+parser.add_argument('-dataset', type=str, default='MR',
+                    help='Name of the Dataset to use')
+parser.add_argument('-dataset_path', type=str, default=None,
+                    help='Location to the Dataset')
+parser.add_argument('-word2vec_path', type=str, default=None,
+                    help='Location to GoogleNews-vectors-negative300.bin file')
+
+# Model iterations and size control
+parser.add_argument('-epochs', type=int, default=25,
+                    help='Number of Epochs to train')
+parser.add_argument('-epochs_log', type=int, default=5,
+                    help='Log Accuracy after every X Epochs')
+parser.add_argument('-batch_size', type=int, default=50,
+                    help='Batch Size to use while training')
+
+# Hyperparameters for Tuning
+parser.add_argument('-optimizer', type=str, default='Adam',
+                    help='Select optimizer from "Adam" or "Adadelta"')
+parser.add_argument('-embedding_size', type=int, default=300,
+                    help='Embedding size to be used in case of self trained embedding only, '
+                         'redundant is using pretrained vector')
+parser.add_argument('-lr', type=float, default=0.001,
+                    help='Learning rate to use while training')
+
+# Running Different variations of model
+parser.add_argument('-use_pretrained_vector', type=str2bool, nargs='?',const=True, default=False,
+                    help='To use Pretrained vector (word2vec) or not')
+parser.add_argument('-keep_embedding_static', type=str2bool, nargs='?',const=True, default=False,
+                    help='Would like to train/adjust the Embedding or not')
+parser.add_argument('-use_multi_channel', type=str2bool, nargs='?', const=True, default=False,
+                    help='Use multichannel or not')
+
+# Storing Logs and Model
+parser.add_argument('-model_name', type=str, default='model',
+                    help='Provide a name to the model, use the names in the paper for logging')
+parser.add_argument('-save_model', type=str2bool, nargs='?', const=True, default=False,
+                    help='Would like to store the model or not, model is '
+                         'stored by dataset name and model name arguments provided')
+parser.add_argument('-log_results', type=str2bool, nargs='?', const=True, default=False,
+                    help='Would like to log the final results of the model')
+
 args = parser.parse_args()
 
 print ('Arguments Loaded')
@@ -129,7 +159,7 @@ print ('Max Length of Sentence - {}'.format(data_preprocessor.max_sen_len))
 print ('Dataset Size - {}'.format(len(data_loader.data[0]['x_train'] + data_loader.data[0]['x_test'])))
 print ('Number of Words - {}'.format(data_preprocessor.wordCount))
 if args.use_pretrained_vector:
-    print ('Number of Words in Word2Vec'.format(data_preprocessor.wordCount_w2v))
+    print ('Number of Words in Word2Vec - {}'.format(data_preprocessor.wordCount_w2v))
 
 print ('Test Data Size - {}'.format('CV' if len(data_loader.data) > 1 else len(data_loader.data[0]['x_test'])))
 
@@ -185,8 +215,8 @@ if args.log_results:
         df = pd.read_csv('./results/' + args.dataset + '.csv')
 
     df = pd.concat([df, pd.DataFrame({'Date': [datetime.datetime.now().strftime('%d %b %Y')],
-                         'Model Type': [args.model_name],
-                         'Test Accuracy': [np.mean(accuracy)],
-                         'Parameters': [args]})])
+                                      'Model Type': [args.model_name],
+                                      'Test Accuracy': [np.mean(accuracy)],
+                                      'Parameters': [args]})])
 
     df.to_csv('./results/' + args.dataset + '.csv', index=False)

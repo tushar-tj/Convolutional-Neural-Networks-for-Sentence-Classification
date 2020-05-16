@@ -6,11 +6,10 @@ from sklearn.utils import shuffle
 
 np.random.seed(15)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-print('Running on: {}'.format(device))
-
 
 class PreprocessData():
     def __init__(self, w2v_path, use_pretrained_vector=False):
+        # Word2vec Location of local Machine
         # '../../../../data/google.news.word2vec/GoogleNews-vectors-negative300.bin'
         self.word2vec = None
         if use_pretrained_vector:

@@ -5,6 +5,7 @@ import numpy as np
 class LoadData():
     def __init__(self, dataset_name, dataset_path=None):
 
+    # Dataset Loction of Local Machine
      # mr='../../../../data/MR-rt-polaritydata/rt-polaritydata/',
      # sst='../../../../data/SST-stanfordSentimentTreebank/',
      # subj='../../../../data/Subj-rotten_imdb/',
