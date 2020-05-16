@@ -61,9 +61,11 @@ as a ‘channel’ and each filter is applied
 
 ## Getting Started
 
+### Training
+
 * Training **CNN-rand** model on MR dataset
 ```
-python train.py -dataset=MR -dataset_path=<path to dataset> -keep_embedding_static=False -use_pretrained_vector=False -use_multi_channel=False
+python train.py -dataset=MR -dataset_path=../../../../data/MR-rt-polaritydata/rt-polaritydata/
 ```
 
 * Training **CNN-static** model on MR dataset
@@ -87,12 +89,16 @@ To save the model use argument **save_model** along with **model_name**. Trained
 
 *Note: Please check parameters section for complete details.*
 
+### Prediction
+
+
 ## Prerequisites
 
-
+```
 torch==1.4.0
-
 sklearn==0.22.2
+pandas==1.0.3
+```
 
 ## Parameters
 
@@ -106,6 +112,8 @@ optional arguments:
   -dataset DATASET      Name of the Dataset to use
   -dataset_path DATASET_PATH
                         Location to the Dataset
+  -word2vec_path WORD2VEC_PATH
+                        Location to GoogleNews-vectors-negative300.bin file
   -epochs EPOCHS        Number of Epochs to train
   -epochs_log EPOCHS_LOG
                         Log Accuracy after every X Epochs
