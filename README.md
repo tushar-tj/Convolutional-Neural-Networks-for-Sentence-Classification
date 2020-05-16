@@ -15,14 +15,14 @@ of word vectors. Each set of vectors is treated
 as a ‘channel’ and each filter is applied
 
 ## Summary Statistics of Dataset
-![Dataset Statistics]('/results/Dataset Statistics.png')
+![Dataset Statistics](/results/Dataset Statistics.png)
 
-![Dataset Statistics Original Paper]('/results/Dataset Statistics Original.png')
+![Dataset Statistics Original Paper](/results/Dataset Statistics Original.png)
 
 ## Training Results
-![Training Results]('/results/Results.png')
+![Training Results](/results/Results.png)
 
-![Training Results Original Paper]('/results/Results Original.png')
+![Training Results Original Paper](/results/Results Original.png)
 
 
 ## Getting Started
