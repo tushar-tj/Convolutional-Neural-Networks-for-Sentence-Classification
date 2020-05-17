@@ -44,12 +44,12 @@ as a ‘channel’ and each filter is applied
 
 * Training Results
 
-|    **Model**    |  MR  |  SST-1  |  SST-2  |  Subj  |  TREC  |  CR  |  MPQA  |
-|-----------------|------|---------|---------|--------|--------|------|--------|
-| CNN-rand        |      |         |         |        |        |      |        |
-| CNN-static      |      |         |         |        |        |      |        |
-| CNN-non-static  |      |         |         |        |        |      |        |
-| CNN-multichannel|      |         |         |        |        |      |        |
+|    **Model**    |  MR   |  SST-1  |  SST-2  |  Subj  |  TREC  |  CR  |  MPQA  |
+|-----------------|-------|---------|---------|--------|--------|------|--------|
+| CNN-rand        | 74.40 | 40.38   | 77.47   |        |        |      |        |
+| CNN-static      | 79.78 | 47.67   | 86.62   |        |        |      |        |
+| CNN-non-static  | 76.80 | 47.91   | 85.76   |        |        |      |        |
+| CNN-multichannel| 76.50 | 48.75   | 85.25   |        |        |      |        |
 
 * Training Results Original Paper
 
@@ -106,8 +106,17 @@ To predict the class of a sentence
 
 ```
 python predict -model_path=<path to torch model> -preprocessor_path=<path to preprocessing class> -sentence=<sentence to predict>
-python predict -model_path=/models/ -preprocessor_path=models/CNN-multichannel.preprocessor -sentence=The product was not as expected
 ```
+
+####Example
+```
+python predict.py -model_path=./models/MR_CNN-rand.torch -preprocessor_path=./models/CNN-rand.preprocessor -sentence='The product was not as expected'
+
+Arguments
+Namespace(model_path='./models/MR_CNN-rand.torch', preprocessor_path='./models/CNN-rand.preprocessor', sentence='The product was not as expected')
+Sentence : The product was not as expected | neg
+```
+
 
 ## Prerequisites
 

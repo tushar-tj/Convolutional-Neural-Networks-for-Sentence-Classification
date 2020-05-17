@@ -89,7 +89,7 @@ def train(x_train, y_train, x_test, y_test, model, optimizer, criterion, model_n
                                                                                                    testacc,
                                                                                                    testloss))
 
-    print(' Best Test Accuracy {:.4f}'.format(np.max(test_accuracy)))
+    print('\nBest Test Accuracy {:.4f}'.format(np.max(test_accuracy)))
     return train_loss, train_accuracy, test_loss, test_accuracy
 
 parser = argparse.ArgumentParser(description='CNN Based Text classifier CNN - Training')
@@ -203,7 +203,7 @@ for d in data_loader.data:
                                                                  model_store=args.save_model,
                                                                  batch_size=args.batch_size)
 
-    accuracy.append(test_accuracy[-1])
+    accuracy.append(np.max(test_accuracy))
 
 print('\nTest Accuracy {}'.format(np.mean(accuracy)))
 
